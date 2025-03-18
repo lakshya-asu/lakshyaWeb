@@ -1,0 +1,71 @@
+
+Lakshya Jain Resume (AI)
+
+Lakshya Jain 
+Graduate Research Fellow 
+ML, Avionics & Robotics Enthusiast 
+
++1 (707)727-5354
+lakshyajain.work@gmail.com 
+Tempe, AZ, US 
+
+EDUCATION 
+
+MASTER’S DEGREE 
+Robotics and Autonomous Systems, ASU, 2024 
+
+BACHELOR’S DEGREE 
+Robotics & Avionics, KJSCE Mumbai, 2018-2022
+
+AWARDS 
+Ranked #6 Worldwide SAE Aero Design East - Advanced 2022 Fort Worth, TX, USA 
+Ranked #13 Worldwide SAE Aero Design East - Regular 2020 Lakeland, FL, USA 
+TSMC AZ Fellowship
+ 
+SKILLS 
+ML: Causal Reasoning, Deep Reinforcement Learning, Graph Neural Networks, Transformers
+Robotics: Motion Planning, SLAM, Sensor Networks, HRI, Control Systems, Soft Robotics
+Development: Python, C++, MATLAB, MLflow, Docker, AWS/GCP, FPGA, Embedded Systems
+
+ABOUT ME 
+Robotics enthusiast pursuing an MS in Robotics at ASU. Passionate about enhancing machine learning through causal reasoning, deep reinforcement learning, and probabilistic reasoning. Dedicated to creating intuitive learning experiences and improving real-world motion planning algorithms.
+
+EXPERIENCE 
+Graduate Teaching Assistant, Logos Robotics Lab, ASU (2024-Present)
+- Courses: CSE 310 Data Structures and Algorithms, CSE 598 Perception in Robotics
+- Assisted in coursework, developed programming assignments, and guided students.
+
+Research Aide, DeSmart Lab, NSF Brain Center (2024-Present)
+- AI-driven lighting prototypes integrating reinforcement learning.
+- Optimized ML models for adaptive light control.
+
+Systems Engineer - Avionics, Indrones (2022-2023)
+- Developed drone electronics and control systems.
+- Enhanced drone video transmission (20km range), reduced crashes by 50%.
+
+Research Intern, LTA Lab, IIT Bombay (2021-2022)
+- Developed precision landing algorithm for UAVs using Deep Reinforcement Learning.
+
+Lead Avionics Engineer, Team Onyx India (2020-2021)
+- Led avionics design for telemetry, gliders, and data acquisition systems.
+
+PROJECTS 
+- Personalized AI Learning Agent (Hackathon Winner)
+- Causal Discovery through Cooperative Imitation Learning, Logos Robotics Lab
+- Metric-Semantic Query System for 3D Scene Understanding, Logos Robotics Lab
+- Causal RL Agent for Montezuma’s Revenge, Logos Robotics Lab
+- AI Therapist in VR, ASU
+- Flight Autopilot System (Honeywell Hackathon 3rd Rank)
+- Forest Surveillance Rover, Grad. Project KJSCE
+- Project HERCARA, IIT Bombay
+- Rayar, SAE Aero Design East Advanced Class 2022
+
+PUBLICATIONS 
+- 'Causal Discovery Through Iterative Structured Interventions' (NeurIPS 2026)
+- 'Probabilistic Spatial Reasoning in 3D Scene Graphs', RAL 2025
+- 'Multi-level architecture for surveillance rovers', IJRASET
+- 'Image Classification for Mobile Robots', IJRASET
+
+LINKS 
+LinkedIn: https://www.linkedin.com/in/lakshya-jain-a747a41b5/
+GitHub: https://github.com/lakshya-asu/IntuitionAI
