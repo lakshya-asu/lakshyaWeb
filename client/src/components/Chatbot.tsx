@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { MessageSquare, Send, X } from "lucide-react";
+import { MessageSquare, Send, X, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   experiences, 
@@ -22,6 +22,14 @@ type Message = {
 // Helper function to generate a unique ID
 const generateId = () => Math.random().toString(36).substring(2, 9);
 
+// Suggested questions for the user
+const suggestedQuestions = [
+  "Tell me about your ML skills",
+  "What projects have you worked on?",
+  "What's your education background?",
+  "What experience do you have?"
+];
+
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
@@ -41,13 +49,13 @@ export default function Chatbot() {
     }
   }, [messages]);
 
-  const handleSendMessage = () => {
-    if (!input.trim()) return;
+  const handleSendMessage = (text = input) => {
+    if (!text.trim()) return;
 
     // Add user message
     const userMessage: Message = {
       id: generateId(),
-      text: input,
+      text: text,
       sender: "user",
     };
 
@@ -56,7 +64,7 @@ export default function Chatbot() {
 
     // Generate response
     setTimeout(() => {
-      const botResponse = generateResponse(input);
+      const botResponse = generateResponse(text);
       const botMessage: Message = {
         id: generateId(),
         text: botResponse,
@@ -71,6 +79,10 @@ export default function Chatbot() {
       handleSendMessage();
     }
   };
+  
+  const handleSuggestedQuestion = (question: string) => {
+    handleSendMessage(question);
+  };
 
   return (
     <>
@@ -84,7 +96,7 @@ export default function Chatbot() {
         <Button
           variant="default"
           size="icon"
-          className="h-14 w-14 rounded-full shadow-lg bg-primary"
+          className="h-14 w-14 rounded-full shadow-lg bg-primary hover:bg-primary/90"
           onClick={() => setIsOpen(true)}
         >
           <MessageSquare size={24} />
@@ -95,27 +107,27 @@ export default function Chatbot() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed bottom-24 right-6 w-80 md:w-96 h-[500px] bg-dark border border-primary/20 rounded-xl shadow-xl flex flex-col z-50 overflow-hidden"
+            className="fixed bottom-24 right-6 w-[350px] md:w-[420px] h-[550px] bg-black/90 backdrop-blur-sm border border-primary/20 rounded-xl shadow-xl flex flex-col z-50 overflow-hidden font-sans"
             initial={{ opacity: 0, y: 20, scale: 0.8 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.8 }}
-            transition={{ duration: 0.2 }}
+            transition={{ duration: 0.3 }}
           >
             {/* Header */}
-            <div className="p-4 border-b border-primary/20 flex justify-between items-center bg-primary/10">
+            <div className="p-4 border-b border-primary/20 flex justify-between items-center bg-gradient-to-r from-primary/20 to-primary/5">
               <div className="flex items-center">
-                <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center mr-2">
-                  <span className="font-bold text-white">LJ</span>
+                <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center mr-3 shadow-md">
+                  <span className="font-bold text-white text-lg">LJ</span>
                 </div>
                 <div>
-                  <h3 className="font-bold">Lakshya's Assistant</h3>
-                  <p className="text-xs text-gray-400">Ask me anything</p>
+                  <h3 className="font-bold text-lg tracking-tight">Lakshya's Assistant</h3>
+                  <p className="text-xs text-gray-400">Quick, concise answers about Lakshya</p>
                 </div>
               </div>
               <Button
                 variant="ghost"
                 size="icon"
-                className="h-8 w-8"
+                className="h-8 w-8 rounded-full hover:bg-white/10"
                 onClick={() => setIsOpen(false)}
               >
                 <X size={18} />
@@ -123,7 +135,7 @@ export default function Chatbot() {
             </div>
 
             {/* Messages */}
-            <div className="flex-1 p-4 overflow-y-auto">
+            <div className="flex-1 p-4 overflow-y-auto bg-gradient-to-b from-black/50 to-black/80">
               <div className="space-y-4">
                 {messages.map((message) => (
                   <div
@@ -132,39 +144,69 @@ export default function Chatbot() {
                       message.sender === "user" ? "justify-end" : "justify-start"
                     }`}
                   >
+                    {message.sender === "bot" && (
+                      <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center mr-2 mt-1 flex-shrink-0">
+                        <span className="font-bold text-primary text-xs">LJ</span>
+                      </div>
+                    )}
                     <div
-                      className={`max-w-[80%] p-3 rounded-lg ${
+                      className={`max-w-[85%] p-3 rounded-2xl ${
                         message.sender === "user"
-                          ? "bg-primary text-white"
-                          : "bg-gray-800"
+                          ? "bg-primary text-white font-medium"
+                          : "bg-gray-800/90 border border-gray-700/50"
                       }`}
                     >
-                      {message.text}
+                      <p className="text-sm leading-relaxed">{message.text}</p>
                     </div>
                   </div>
                 ))}
+                
+                {/* Suggested questions - show only at the beginning */}
+                {messages.length === 1 && (
+                  <motion.div 
+                    className="mt-8"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5 }}
+                  >
+                    <p className="text-xs text-gray-400 mb-2 font-medium">SUGGESTED QUESTIONS:</p>
+                    <div className="space-y-2">
+                      {suggestedQuestions.map((question, index) => (
+                        <button
+                          key={index}
+                          className="w-full text-left p-2 rounded-lg bg-gray-800/50 hover:bg-gray-800 border border-gray-700/50 text-sm flex items-center group transition-colors"
+                          onClick={() => handleSuggestedQuestion(question)}
+                        >
+                          <span className="flex-1">{question}</span>
+                          <ChevronRight className="h-4 w-4 text-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </button>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+                
                 <div ref={messagesEndRef} />
               </div>
             </div>
 
             {/* Input */}
-            <div className="p-4 border-t border-primary/20">
-              <div className="flex">
+            <div className="p-4 border-t border-gray-800">
+              <div className="flex items-center">
                 <Input
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  placeholder="Ask something..."
-                  className="bg-dark/50 border-primary/30 focus:ring-primary/50"
+                  placeholder="Ask about skills, experience, education..."
+                  className="bg-black/40 border-gray-700 focus:border-primary/50 focus:ring-primary/20 rounded-full py-6 px-4 text-sm"
                 />
                 <Button
                   variant="default"
                   size="icon"
-                  className="ml-2 bg-primary"
-                  onClick={handleSendMessage}
+                  className="ml-2 bg-primary hover:bg-primary/90 h-10 w-10 rounded-full flex-shrink-0"
+                  onClick={() => handleSendMessage()}
                   disabled={!input.trim()}
                 >
-                  <Send size={18} />
+                  <Send size={16} />
                 </Button>
               </div>
             </div>

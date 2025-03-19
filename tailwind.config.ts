@@ -5,6 +5,11 @@ export default {
   content: ["./client/index.html", "./client/src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Montserrat', 'Inter', 'sans-serif'],
+        display: ['Montserrat', 'Space Grotesk', 'sans-serif'],
+        mono: ['Menlo', 'Monaco', 'Courier New', 'monospace'],
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
