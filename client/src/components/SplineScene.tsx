@@ -1,24 +1,26 @@
-import { useEffect, useState } from "react";
-import Spline from '@splinetool/react-spline';
-import { motion } from "framer-motion";
+import { useEffect, useState, useRef } from "react";
+import { Application } from '@splinetool/runtime';
 
 export default function SplineScene() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate loading the 3D scene
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
+    // Only initialize once the component is mounted
+    if (canvasRef.current) {
+      const app = new Application(canvasRef.current);
+      app.load('https://prod.spline.design/qpAo2x456Q8u-kah/scene.splinecode')
+        .then(() => {
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error loading Spline scene:", error);
+          setIsLoading(false);
+        });
+    }
 
-    return () => {
-      clearTimeout(timer);
-    };
+    // Cleanup function not needed as Spline handles its own cleanup
   }, []);
-
-  const handleSplineLoad = () => {
-    setIsLoading(false);
-  };
 
   return (
     <div className="w-full h-full flex items-center justify-center relative">
@@ -29,10 +31,7 @@ export default function SplineScene() {
       )}
       
       <div className="absolute w-full h-full">
-        <Spline 
-          scene="https://prod.spline.design/KR8gYIORGSfbrPzp/scene.splinecode"
-          onLoad={handleSplineLoad}
-        />
+        <canvas id="canvas3d" ref={canvasRef} className="w-full h-full" />
       </div>
     </div>
   );
