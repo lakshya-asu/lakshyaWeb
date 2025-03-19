@@ -56,10 +56,10 @@ export const socialLinks = [
   }
 ];
 
-// Skills
+// Skills with proficiency (1-10)
 export const mlSkills = [
   "Causal Reasoning",
-  "Deep Reinforcement Learning",
+  "Deep Reinforcement Learning", 
   "Graph Neural Networks",
   "Transformers"
 ];
@@ -83,6 +83,70 @@ export const devSkills = [
   "FPGA",
   "Embedded Systems"
 ];
+
+// Skill network data for 3D visualization
+export const skillsNetworkData = {
+  nodes: [
+    // ML Skills
+    { id: "causal-reasoning", name: "Causal Reasoning", group: "ml", level: 9, description: "Identifying cause-effect relationships in data" },
+    { id: "reinforcement-learning", name: "Deep RL", group: "ml", level: 8, description: "AI agents learning through environment interaction" },
+    { id: "gnn", name: "Graph Neural Networks", group: "ml", level: 7, description: "Neural networks for graph-structured data" },
+    { id: "transformers", name: "Transformers", group: "ml", level: 7, description: "Attention-based deep learning architecture" },
+    
+    // Robotics Skills
+    { id: "motion-planning", name: "Motion Planning", group: "robotics", level: 9, description: "Generating efficient robot movement paths" },
+    { id: "slam", name: "SLAM", group: "robotics", level: 8, description: "Simultaneous localization and mapping" },
+    { id: "sensors", name: "Sensor Networks", group: "robotics", level: 7, description: "Interconnected sensors for environment monitoring" },
+    { id: "hri", name: "HRI", group: "robotics", level: 6, description: "Human-robot interaction principles" },
+    { id: "control", name: "Control Systems", group: "robotics", level: 8, description: "Regulation of robot dynamics & behavior" },
+    { id: "soft-robotics", name: "Soft Robotics", group: "robotics", level: 6, description: "Flexible, compliant robotic systems" },
+    
+    // Dev Skills
+    { id: "python", name: "Python", group: "dev", level: 9, description: "Primary programming language" },
+    { id: "cpp", name: "C++", group: "dev", level: 8, description: "For performance-critical applications" },
+    { id: "matlab", name: "MATLAB", group: "dev", level: 7, description: "Numerical computing & algorithm development" },
+    { id: "mlflow", name: "MLflow", group: "dev", level: 6, description: "ML lifecycle management platform" },
+    { id: "docker", name: "Docker", group: "dev", level: 7, description: "Containerization & deployment" },
+    { id: "cloud", name: "AWS/GCP", group: "dev", level: 7, description: "Cloud platforms for ML & robotics" },
+    { id: "fpga", name: "FPGA", group: "dev", level: 6, description: "Field-programmable gate arrays" },
+    { id: "embedded", name: "Embedded Systems", group: "dev", level: 8, description: "Electronics & low-level programming" }
+  ],
+  links: [
+    // ML Internal connections
+    { source: "causal-reasoning", target: "reinforcement-learning", strength: 0.8 },
+    { source: "reinforcement-learning", target: "gnn", strength: 0.6 },
+    { source: "gnn", target: "transformers", strength: 0.7 },
+    { source: "transformers", target: "causal-reasoning", strength: 0.5 },
+    
+    // Robotics Internal connections
+    { source: "motion-planning", target: "slam", strength: 0.9 },
+    { source: "slam", target: "sensors", strength: 0.7 },
+    { source: "sensors", target: "control", strength: 0.8 },
+    { source: "control", target: "soft-robotics", strength: 0.5 },
+    { source: "soft-robotics", target: "hri", strength: 0.6 },
+    { source: "hri", target: "motion-planning", strength: 0.7 },
+    
+    // Dev Internal connections
+    { source: "python", target: "cpp", strength: 0.6 },
+    { source: "cpp", target: "embedded", strength: 0.9 },
+    { source: "python", target: "mlflow", strength: 0.8 },
+    { source: "docker", target: "cloud", strength: 0.9 },
+    { source: "cloud", target: "mlflow", strength: 0.7 },
+    { source: "matlab", target: "python", strength: 0.6 },
+    { source: "fpga", target: "embedded", strength: 0.8 },
+    
+    // Cross-domain connections
+    { source: "causal-reasoning", target: "motion-planning", strength: 0.7 },
+    { source: "reinforcement-learning", target: "control", strength: 0.8 },
+    { source: "python", target: "reinforcement-learning", strength: 0.9 },
+    { source: "slam", target: "gnn", strength: 0.6 },
+    { source: "cpp", target: "control", strength: 0.7 },
+    { source: "matlab", target: "control", strength: 0.8 },
+    { source: "sensors", target: "embedded", strength: 0.9 },
+    { source: "causal-reasoning", target: "python", strength: 0.8 },
+    { source: "transformers", target: "hri", strength: 0.5 }
+  ]
+};
 
 // Projects
 export const projects = [
