@@ -31,20 +31,21 @@ export default function BackToTop() {
     <AnimatePresence>
       {visible && (
         <motion.div
-          className="fixed bottom-6 right-6 z-50"
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.5 }}
+          className="fixed bottom-6 left-6 z-50" // Moved to the left side to avoid overlap with chatbot
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.3 }}
         >
           <Button
             variant="default"
             size="icon"
-            className="rounded-full h-12 w-12 bg-primary hover:bg-primary/90 shadow-lg"
+            className="rounded-full h-12 w-12 bg-primary/90 hover:bg-primary shadow-lg shadow-primary/20 border-2 border-white/10"
             onClick={scrollToTop}
             aria-label="Back to top"
           >
-            <ArrowUp className="h-5 w-5" />
+            <ArrowUp className="h-5 w-5 text-white" />
+            <span className="sr-only">Back to top</span>
           </Button>
         </motion.div>
       )}

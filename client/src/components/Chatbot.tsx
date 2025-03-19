@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { MessageSquare, Send, X, ChevronRight } from "lucide-react";
+import { MessageSquare, Send, X, ChevronRight, Bot, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   experiences, 
@@ -40,6 +40,7 @@ export default function Chatbot() {
     },
   ]);
   const [input, setInput] = useState("");
+  const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Auto scroll to bottom of messages
@@ -47,7 +48,7 @@ export default function Chatbot() {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  }, [messages]);
+  }, [messages, isTyping]);
 
   const handleSendMessage = (text = input) => {
     if (!text.trim()) return;
@@ -61,8 +62,9 @@ export default function Chatbot() {
 
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
+    setIsTyping(true);
 
-    // Generate response
+    // Generate response with typing effect
     setTimeout(() => {
       const botResponse = generateResponse(text);
       const botMessage: Message = {
@@ -70,8 +72,9 @@ export default function Chatbot() {
         text: botResponse,
         sender: "bot",
       };
+      setIsTyping(false);
       setMessages((prev) => [...prev, botMessage]);
-    }, 500);
+    }, 1000);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -96,10 +99,10 @@ export default function Chatbot() {
         <Button
           variant="default"
           size="icon"
-          className="h-14 w-14 rounded-full shadow-lg bg-primary hover:bg-primary/90"
+          className="h-14 w-14 rounded-full shadow-lg bg-primary hover:bg-primary/90 border-4 border-white/10"
           onClick={() => setIsOpen(true)}
         >
-          <MessageSquare size={24} />
+          <Bot size={24} className="text-white" />
         </Button>
       </motion.div>
 
@@ -107,27 +110,27 @@ export default function Chatbot() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed bottom-24 right-6 w-[350px] md:w-[420px] h-[550px] bg-black/90 backdrop-blur-sm border border-primary/20 rounded-xl shadow-xl flex flex-col z-50 overflow-hidden font-sans"
+            className="fixed bottom-24 right-6 w-[350px] md:w-[420px] h-[550px] bg-[#0c1824]/95 backdrop-blur-md border border-white/10 rounded-xl shadow-xl flex flex-col z-50 overflow-hidden font-sans"
             initial={{ opacity: 0, y: 20, scale: 0.8 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.8 }}
             transition={{ duration: 0.3 }}
           >
             {/* Header */}
-            <div className="p-4 border-b border-primary/20 flex justify-between items-center bg-gradient-to-r from-primary/20 to-primary/5">
+            <div className="p-4 border-b border-white/10 flex justify-between items-center bg-gradient-to-r from-primary/20 to-primary/5">
               <div className="flex items-center">
-                <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center mr-3 shadow-md">
-                  <span className="font-bold text-white text-lg">LJ</span>
+                <div className="w-10 h-10 rounded-full bg-primary/30 flex items-center justify-center mr-3 shadow-md border border-primary/30">
+                  <Bot size={20} className="text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg tracking-tight">Lakshya's Assistant</h3>
-                  <p className="text-xs text-gray-400">Quick, concise answers about Lakshya</p>
+                  <h3 className="font-bold text-lg tracking-tight text-white">AI Assistant</h3>
+                  <p className="text-xs text-white/60">Ask anything about Lakshya's work</p>
                 </div>
               </div>
               <Button
                 variant="ghost"
                 size="icon"
-                className="h-8 w-8 rounded-full hover:bg-white/10"
+                className="h-8 w-8 rounded-full hover:bg-white/10 text-white/70 hover:text-white"
                 onClick={() => setIsOpen(false)}
               >
                 <X size={18} />
@@ -135,7 +138,7 @@ export default function Chatbot() {
             </div>
 
             {/* Messages */}
-            <div className="flex-1 p-4 overflow-y-auto bg-gradient-to-b from-black/50 to-black/80">
+            <div className="flex-1 p-4 overflow-y-auto bg-gradient-to-b from-[#0c1824]/95 to-[#0c1824]">
               <div className="space-y-4">
                 {messages.map((message) => (
                   <div
@@ -145,21 +148,37 @@ export default function Chatbot() {
                     }`}
                   >
                     {message.sender === "bot" && (
-                      <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center mr-2 mt-1 flex-shrink-0">
-                        <span className="font-bold text-primary text-xs">LJ</span>
+                      <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center mr-2 mt-1 flex-shrink-0 border border-primary/30">
+                        <Bot size={14} className="text-primary" />
                       </div>
                     )}
                     <div
                       className={`max-w-[85%] p-3 rounded-2xl ${
                         message.sender === "user"
-                          ? "bg-primary text-white font-medium"
-                          : "bg-gray-800/90 border border-gray-700/50"
+                          ? "bg-primary text-white font-medium shadow-md"
+                          : "bg-white/10 text-white/90 border border-white/10"
                       }`}
                     >
                       <p className="text-sm leading-relaxed">{message.text}</p>
                     </div>
                   </div>
                 ))}
+                
+                {/* Typing indicator */}
+                {isTyping && (
+                  <div className="flex justify-start">
+                    <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center mr-2 mt-1 flex-shrink-0 border border-primary/30">
+                      <Bot size={14} className="text-primary" />
+                    </div>
+                    <div className="max-w-[85%] p-3 rounded-2xl bg-white/10 text-white/90 border border-white/10">
+                      <div className="flex space-x-1">
+                        <div className="w-2 h-2 rounded-full bg-white/70 animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                        <div className="w-2 h-2 rounded-full bg-white/70 animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                        <div className="w-2 h-2 rounded-full bg-white/70 animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                      </div>
+                    </div>
+                  </div>
+                )}
                 
                 {/* Suggested questions - show only at the beginning */}
                 {messages.length === 1 && (
@@ -169,16 +188,19 @@ export default function Chatbot() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5 }}
                   >
-                    <p className="text-xs text-gray-400 mb-2 font-medium">SUGGESTED QUESTIONS:</p>
+                    <div className="flex items-center gap-1.5 mb-3">
+                      <Sparkles size={14} className="text-primary" />
+                      <p className="text-xs text-white/60 font-medium">TRY ASKING</p>
+                    </div>
                     <div className="space-y-2">
                       {suggestedQuestions.map((question, index) => (
                         <button
                           key={index}
-                          className="w-full text-left p-2 rounded-lg bg-gray-800/50 hover:bg-gray-800 border border-gray-700/50 text-sm flex items-center group transition-colors"
+                          className="w-full text-left p-2.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-sm flex items-center group transition-colors text-white/80 hover:text-white"
                           onClick={() => handleSuggestedQuestion(question)}
                         >
                           <span className="flex-1">{question}</span>
-                          <ChevronRight className="h-4 w-4 text-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+                          <ChevronRight className="h-4 w-4 text-primary opacity-70 group-hover:opacity-100 transition-opacity" />
                         </button>
                       ))}
                     </div>
@@ -190,23 +212,23 @@ export default function Chatbot() {
             </div>
 
             {/* Input */}
-            <div className="p-4 border-t border-gray-800">
+            <div className="p-4 border-t border-white/10 bg-white/5">
               <div className="flex items-center">
                 <Input
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder="Ask about skills, experience, education..."
-                  className="bg-black/40 border-gray-700 focus:border-primary/50 focus:ring-primary/20 rounded-full py-6 px-4 text-sm"
+                  className="bg-white/10 border-white/20 focus:border-primary/50 focus:ring-primary/20 rounded-full py-6 px-4 text-sm text-white placeholder:text-white/50"
                 />
                 <Button
                   variant="default"
                   size="icon"
-                  className="ml-2 bg-primary hover:bg-primary/90 h-10 w-10 rounded-full flex-shrink-0"
+                  className="ml-2 bg-primary hover:bg-primary/90 h-10 w-10 rounded-full flex-shrink-0 shadow-md"
                   onClick={() => handleSendMessage()}
-                  disabled={!input.trim()}
+                  disabled={!input.trim() || isTyping}
                 >
-                  <Send size={16} />
+                  <Send size={16} className="text-white" />
                 </Button>
               </div>
             </div>
