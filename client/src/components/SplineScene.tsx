@@ -1,62 +1,37 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import Spline from '@splinetool/react-spline';
 import { motion } from "framer-motion";
 
-// This component will be replaced with a real Spline integration
-// Currently using a placeholder with simulated 3D elements
 export default function SplineScene() {
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    // Simulate loading the 3D scene
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, []);
-
-  if (isLoading) {
-    return (
-      <div className="w-full h-full flex items-center justify-center">
-        <div className="text-primary">Loading 3D scene...</div>
-      </div>
-    );
-  }
+  const handleOnLoad = () => {
+    setIsLoading(false);
+  };
 
   return (
-    <div className="w-full h-full flex items-center justify-center relative">
-      <div className="absolute w-full h-full flex items-center justify-center">
-        <div className="relative w-64 h-64 md:w-96 md:h-96">
-          {/* Simulated 3D Elements */}
+    <div className="w-full h-full relative">
+      {isLoading && (
+        <div className="absolute inset-0 flex items-center justify-center z-10 bg-black/30 backdrop-blur-sm">
           <motion.div 
-            className="absolute w-full h-full rounded-full border-4 border-primary opacity-20"
-            animate={{ rotate: 360 }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          />
-          <motion.div 
-            className="absolute w-full h-full rounded-full border-4 border-secondary opacity-20 rotate-45"
-            animate={{ rotate: 405 }}
-            transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-          />
-          <motion.div 
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 md:w-64 md:h-64 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20"
-            animate={{ scale: [1, 1.05, 1] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <motion.div 
-            className="absolute top-0 left-1/4 w-4 h-4 rounded-full bg-accent"
-            animate={{ y: [0, 10, 0] }}
+            className="text-primary text-lg font-medium flex items-center gap-2"
+            animate={{ opacity: [0.5, 1, 0.5] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <motion.div 
-            className="absolute bottom-1/4 right-0 w-6 h-6 rounded-full bg-secondary opacity-75"
-            animate={{ scale: [1, 1.5, 1] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          />
+          >
+            <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            Loading 3D Scene...
+          </motion.div>
         </div>
-      </div>
+      )}
+      
+      <Spline
+        scene="https://prod.spline.design/OFVUl4spMro8Cg69/scene.splinecode"
+        onLoad={handleOnLoad}
+        className="w-full h-full"
+      />
     </div>
   );
 }
