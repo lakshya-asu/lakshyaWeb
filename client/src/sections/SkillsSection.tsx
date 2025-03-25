@@ -1,7 +1,6 @@
 import { mlSkills, roboticsSkills, devSkills } from "@shared/data";
 import { motion } from "framer-motion";
-import SkillsNetwork from "@/components/SkillsNetwork";
-import { Brain, Cpu, Code, NetworkIcon, MousePointerClick } from "lucide-react";
+import { Brain, Cpu, Code } from "lucide-react";
 
 export default function SkillsSection() {
   // Animation variants
@@ -105,27 +104,6 @@ export default function SkillsSection() {
               ))}
             </div>
           </motion.div>
-        </motion.div>
-        
-        {/* Interactive Skills Network Visualization */}
-        <motion.div 
-          className="mt-12 relative"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <h3 className="text-lg font-semibold text-white text-center mb-4">Skill Relationships</h3>
-          
-          <div className="relative bg-[#111827] rounded-lg overflow-hidden h-[450px]">
-            <div className="absolute right-3 top-3 flex items-center gap-1.5 bg-dark/80 rounded px-2 py-1 z-10 text-xs text-white/60">
-              <MousePointerClick className="h-3 w-3" />
-              <span>Click nodes to explore</span>
-            </div>
-            
-            {/* 3D Skills Network Visualization */}
-            <SkillsNetwork />
-          </div>
         </motion.div>
       </div>
     </section>

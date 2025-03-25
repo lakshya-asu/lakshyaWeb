@@ -21,48 +21,50 @@ export default function PublicationsSection() {
   };
 
   return (
-    <section id="publications" className="py-20 bg-dark bg-grid">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold font-display text-primary">Publications</h2>
-          <div className="mt-2 h-1 w-20 bg-primary mx-auto"></div>
+    <section id="publications" className="py-16 bg-[#0a0c13]">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl font-bold font-display text-white">
+            <span className="text-primary">Publications</span>
+          </h2>
+          <div className="mt-2 h-0.5 w-12 bg-primary mx-auto"></div>
         </div>
         
         <motion.div 
-          className="grid grid-cols-1 lg:grid-cols-2 gap-8"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-5"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
           {/* Left column */}
-          <div className="space-y-6">
+          <div className="space-y-5">
             {publications.slice(0, Math.ceil(publications.length / 2)).map((pub, index) => (
               <motion.div 
                 key={index} 
-                className="bg-dark/80 p-6 rounded-xl border border-primary/20 hover:border-primary/50 transition-all"
+                className="bg-[#111827] p-5 rounded-lg border-l-4 border-primary"
                 variants={itemVariants}
               >
-                <h3 className="text-lg font-display font-bold text-primary mb-2">
+                <h3 className="text-lg font-display font-bold text-white mb-2">
                   {pub.title}
                 </h3>
-                <p className="text-sm text-gray-300 mb-2">{pub.journal}</p>
-                <p className="text-sm mb-4">
+                <p className="text-xs text-primary mb-2">{pub.journal}</p>
+                <p className="text-sm text-white/70 mb-3">
                   {pub.description}
                 </p>
                 <div className="flex items-center space-x-4">
                   {pub.paperLink && (
-                    <Button variant="link" className="p-0 text-primary hover:text-primary/80 gap-1" asChild>
+                    <Button variant="ghost" className="h-8 px-2 py-0 text-primary hover:bg-primary/5 gap-1" asChild>
                       <a href={pub.paperLink}>
-                        <FileText size={16} />
+                        <FileText size={14} />
                         Paper
                       </a>
                     </Button>
                   )}
                   {pub.codeLink && (
-                    <Button variant="link" className="p-0 text-primary hover:text-primary/80 gap-1" asChild>
+                    <Button variant="ghost" className="h-8 px-2 py-0 text-primary hover:bg-primary/5 gap-1" asChild>
                       <a href={pub.codeLink}>
-                        <Code size={16} />
+                        <Code size={14} />
                         Code
                       </a>
                     </Button>
@@ -73,33 +75,33 @@ export default function PublicationsSection() {
           </div>
           
           {/* Right column */}
-          <div className="space-y-6">
+          <div className="space-y-5">
             {publications.slice(Math.ceil(publications.length / 2)).map((pub, index) => (
               <motion.div 
                 key={index} 
-                className="bg-dark/80 p-6 rounded-xl border border-primary/20 hover:border-primary/50 transition-all"
+                className="bg-[#111827] p-5 rounded-lg border-l-4 border-primary"
                 variants={itemVariants}
               >
-                <h3 className="text-lg font-display font-bold text-primary mb-2">
+                <h3 className="text-lg font-display font-bold text-white mb-2">
                   {pub.title}
                 </h3>
-                <p className="text-sm text-gray-300 mb-2">{pub.journal}</p>
-                <p className="text-sm mb-4">
+                <p className="text-xs text-primary mb-2">{pub.journal}</p>
+                <p className="text-sm text-white/70 mb-3">
                   {pub.description}
                 </p>
                 <div className="flex items-center space-x-4">
                   {pub.paperLink && (
-                    <Button variant="link" className="p-0 text-primary hover:text-primary/80 gap-1" asChild>
+                    <Button variant="ghost" className="h-8 px-2 py-0 text-primary hover:bg-primary/5 gap-1" asChild>
                       <a href={pub.paperLink}>
-                        <FileText size={16} />
+                        <FileText size={14} />
                         Paper
                       </a>
                     </Button>
                   )}
                   {pub.codeLink && (
-                    <Button variant="link" className="p-0 text-primary hover:text-primary/80 gap-1" asChild>
+                    <Button variant="ghost" className="h-8 px-2 py-0 text-primary hover:bg-primary/5 gap-1" asChild>
                       <a href={pub.codeLink}>
-                        <Code size={16} />
+                        <Code size={14} />
                         Code
                       </a>
                     </Button>
@@ -107,40 +109,6 @@ export default function PublicationsSection() {
                 </div>
               </motion.div>
             ))}
-          </div>
-        </motion.div>
-        
-        {/* Citation Metrics Visualization */}
-        <motion.div 
-          className="mt-12 p-6 bg-dark/50 rounded-xl border border-primary/20"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        >
-          <h3 className="text-lg font-display font-bold mb-4">Citation Metrics</h3>
-          <div className="h-48 relative overflow-hidden">
-            {/* Placeholder for citation metrics visualization */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <p className="text-sm text-gray-400">Interactive citation metrics visualization would appear here</p>
-            </div>
-            
-            {/* Simulated bar chart for visual effect */}
-            <div className="absolute bottom-0 left-0 right-0 flex items-end justify-around h-32 px-4">
-              {[40, 60, 50, 80, 70, 90].map((height, i) => (
-                <motion.div 
-                  key={i}
-                  className="w-8 bg-primary/60 rounded-t-md"
-                  style={{ height: '10%' }}
-                  animate={{ height: `${height}%` }}
-                  transition={{ 
-                    duration: 1, 
-                    delay: 0.1 * i,
-                    ease: "easeOut"
-                  }}
-                />
-              ))}
-            </div>
           </div>
         </motion.div>
       </div>
