@@ -300,7 +300,7 @@ export default function SkillsNetwork() {
         const y = node.y * scale;
         
         // Radius based on node level and 3D perspective
-        const baseRadius = 5 + node.level * 1.2;
+        const baseRadius = 4 + node.level * 0.8;
         const radius = baseRadius * scale;
         
         // Node glow and fill
@@ -308,44 +308,26 @@ export default function SkillsNetwork() {
         const isSelected = node === selectedNode;
         const color = groupColors[node.group as keyof typeof groupColors];
         
-        if (isSelected || isHovered) {
-          // Glow effect
-          const glowRadius = radius * 1.8;
-          const gradient = ctx.createRadialGradient(x, y, radius, x, y, glowRadius);
-          gradient.addColorStop(0, color.replace('1)', '0.7)'));
-          gradient.addColorStop(1, color.replace('1)', '0)'));
-          
-          ctx.fillStyle = gradient;
-          ctx.beginPath();
-          ctx.arc(x, y, glowRadius, 0, Math.PI * 2);
-          ctx.fill();
-        }
-        
         // Draw node
-        ctx.globalAlpha = 0.9;
-        ctx.fillStyle = isSelected || isHovered ? color : color.replace('1)', '0.7)');
+        ctx.globalAlpha = 0.8;
+        ctx.fillStyle = isSelected || isHovered ? color : color.replace('1)', '0.6)');
         ctx.beginPath();
         ctx.arc(x, y, radius, 0, Math.PI * 2);
         ctx.fill();
         
-        // Draw border
-        ctx.strokeStyle = color.replace('1)', '0.8)');
-        ctx.lineWidth = isSelected || isHovered ? 2 : 1;
-        ctx.stroke();
-        
         // Draw text if hovered or selected
         if (isHovered || isSelected) {
           ctx.globalAlpha = 1;
-          ctx.font = isSelected ? 'bold 12px Montserrat' : '12px Montserrat';
+          ctx.font = '11px Montserrat';
           ctx.fillStyle = '#ffffff';
           ctx.textAlign = 'center';
           ctx.textBaseline = 'middle';
-          ctx.fillText(node.name, x, y - radius - 10);
+          ctx.fillText(node.name, x, y - radius - 8);
           
           if (isSelected) {
-            ctx.font = '10px Montserrat';
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
-            ctx.fillText(`Proficiency: ${node.level}/10`, x, y + radius + 12);
+            ctx.font = '9px Montserrat';
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+            ctx.fillText(`Level: ${node.level}/10`, x, y + radius + 10);
           }
         }
       }
@@ -373,63 +355,43 @@ export default function SkillsNetwork() {
       
       {selectedNode && (
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 5 }}
           animate={{ opacity: 1, y: 0 }}
-          className="absolute bottom-4 left-4 right-4 bg-dark/90 border border-white/10 rounded-lg p-4 backdrop-blur-sm"
+          className="absolute bottom-3 left-3 right-3 bg-[#0a0c13] rounded p-3"
         >
-          <div className="flex items-center mb-2">
+          <div className="flex items-center gap-2 mb-1.5">
             <div 
-              className="w-3 h-3 rounded-full mr-2" 
+              className="w-2 h-2 rounded-full" 
               style={{ backgroundColor: groupColors[selectedNode.group as keyof typeof groupColors] }}
             />
-            <h4 className="text-lg font-display font-bold">{selectedNode.name}</h4>
-            <div className="ml-auto px-2 py-1 rounded text-xs bg-white/10">
-              {selectedNode.group === "ml" ? "Machine Learning" : 
-               selectedNode.group === "robotics" ? "Robotics" : "Development"}
+            <h4 className="text-sm font-medium text-white">{selectedNode.name}</h4>
+            <div className="ml-auto text-xs text-white/50">
+              {selectedNode.group === "ml" ? "ML" : 
+               selectedNode.group === "robotics" ? "Robotics" : "Dev"}
             </div>
           </div>
-          <p className="text-sm text-gray-300 mb-3">{selectedNode.description}</p>
           
-          <div className="w-full bg-dark/50 rounded-full h-2 mb-1">
+          <p className="text-xs text-white/70 mb-2">{selectedNode.description}</p>
+          
+          <div className="w-full bg-dark h-1.5 rounded-sm overflow-hidden">
             <div 
-              className="h-2 rounded-full" 
+              className="h-1.5 rounded-sm" 
               style={{ 
                 width: `${selectedNode.level * 10}%`,
                 backgroundColor: groupColors[selectedNode.group as keyof typeof groupColors]
               }} 
             />
           </div>
-          <div className="flex justify-between text-xs text-gray-400">
-            <span>Beginner</span>
-            <span>Proficient</span>
-            <span>Expert</span>
-          </div>
         </motion.div>
       )}
       
-      <div className="absolute top-4 left-4 bg-dark/80 border border-white/10 rounded-lg p-3 backdrop-blur-sm">
-        <div className="text-xs text-gray-300">
-          <div className="flex items-center mb-2">
-            <span className="inline-block w-10">Nodes:</span>
-            <div className="flex gap-2">
-              <div className="flex items-center">
-                <div className="w-2 h-2 rounded-full bg-blue-500 mr-1"></div>
-                <span>ML</span>
-              </div>
-              <div className="flex items-center">
-                <div className="w-2 h-2 rounded-full bg-green-500 mr-1"></div>
-                <span>Robotics</span>
-              </div>
-              <div className="flex items-center">
-                <div className="w-2 h-2 rounded-full bg-purple-500 mr-1"></div>
-                <span>Dev</span>
-              </div>
-            </div>
-          </div>
-          <div className="text-gray-400 text-xs">
-            <span>Click on a node to see details</span>
-          </div>
-        </div>
+      <div className="absolute top-3 right-3 bg-[#0a0c13] rounded px-2 py-1 flex items-center gap-2 text-[10px] text-white/60">
+        <div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+        <span>ML</span>
+        <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+        <span>Robotics</span>
+        <div className="w-1.5 h-1.5 rounded-full bg-purple-500"></div>
+        <span>Dev</span>
       </div>
     </div>
   );

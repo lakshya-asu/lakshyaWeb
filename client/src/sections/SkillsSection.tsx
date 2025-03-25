@@ -21,20 +21,17 @@ export default function SkillsSection() {
   };
 
   return (
-    <section id="skills" className="py-20 bg-gradient-to-b from-[#0a0c13] to-[#111827]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold font-display text-white">
+    <section id="skills" className="py-16 bg-[#0a0c13]">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold font-display text-white">
             <span className="text-primary">Skills</span> & Expertise
           </h2>
-          <div className="mt-2 h-1 w-20 bg-primary mx-auto"></div>
-          <p className="mt-4 text-white/70 max-w-2xl mx-auto">
-            Specialized in causal reasoning, robotics, and machine learning
-          </p>
+          <div className="mt-2 h-0.5 w-12 bg-primary mx-auto"></div>
         </div>
         
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6"
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
@@ -42,72 +39,69 @@ export default function SkillsSection() {
         >
           {/* ML Skills */}
           <motion.div 
-            className="bg-[#111827]/80 p-6 rounded-xl border border-[#3b82f6]/30 hover:border-[#3b82f6]/70 transition-all shadow-xl backdrop-blur-sm hover:shadow-[#3b82f6]/20 hover:shadow-2xl"
+            className="bg-[#111827] p-5 rounded-lg border-l-4 border-[#3b82f6] transition-all"
             variants={itemVariants}
           >
-            <div className="flex items-center mb-6">
-              <div className="w-12 h-12 rounded-full bg-[#3b82f6]/20 flex items-center justify-center mr-4 border border-[#3b82f6]/30">
-                <Brain className="text-[#3b82f6] h-6 w-6" />
+            <div className="flex items-center mb-4">
+              <div className="w-10 h-10 rounded-md bg-[#3b82f6]/10 flex items-center justify-center mr-3">
+                <Brain className="text-[#3b82f6] h-5 w-5" />
               </div>
-              <h3 className="text-xl font-display font-bold text-white">Machine Learning</h3>
+              <h3 className="text-lg font-display font-bold text-white">Machine Learning</h3>
             </div>
             <div className="flex flex-wrap gap-2">
               {mlSkills.map((skill, index) => (
-                <motion.span 
+                <span 
                   key={index} 
-                  className="skill-bubble px-4 py-2 bg-[#3b82f6]/10 text-[#3b82f6] rounded-full text-sm border border-[#3b82f6]/20"
-                  whileHover={{ y: -5, boxShadow: '0 10px 25px -5px rgba(59, 130, 246, 0.3)' }}
+                  className="px-3 py-1 bg-[#3b82f6]/10 text-[#3b82f6] rounded-md text-xs"
                 >
                   {skill}
-                </motion.span>
+                </span>
               ))}
             </div>
           </motion.div>
           
           {/* Robotics Skills */}
           <motion.div 
-            className="bg-[#111827]/80 p-6 rounded-xl border border-[#10b981]/30 hover:border-[#10b981]/70 transition-all shadow-xl backdrop-blur-sm hover:shadow-[#10b981]/20 hover:shadow-2xl"
+            className="bg-[#111827] p-5 rounded-lg border-l-4 border-[#10b981] transition-all"
             variants={itemVariants}
           >
-            <div className="flex items-center mb-6">
-              <div className="w-12 h-12 rounded-full bg-[#10b981]/20 flex items-center justify-center mr-4 border border-[#10b981]/30">
-                <Cpu className="text-[#10b981] h-6 w-6" />
+            <div className="flex items-center mb-4">
+              <div className="w-10 h-10 rounded-md bg-[#10b981]/10 flex items-center justify-center mr-3">
+                <Cpu className="text-[#10b981] h-5 w-5" />
               </div>
-              <h3 className="text-xl font-display font-bold text-white">Robotics</h3>
+              <h3 className="text-lg font-display font-bold text-white">Robotics</h3>
             </div>
             <div className="flex flex-wrap gap-2">
               {roboticsSkills.map((skill, index) => (
-                <motion.span 
+                <span 
                   key={index} 
-                  className="skill-bubble px-4 py-2 bg-[#10b981]/10 text-[#10b981] rounded-full text-sm border border-[#10b981]/20"
-                  whileHover={{ y: -5, boxShadow: '0 10px 25px -5px rgba(16, 185, 129, 0.3)' }}
+                  className="px-3 py-1 bg-[#10b981]/10 text-[#10b981] rounded-md text-xs"
                 >
                   {skill}
-                </motion.span>
+                </span>
               ))}
             </div>
           </motion.div>
           
           {/* Development Skills */}
           <motion.div 
-            className="bg-[#111827]/80 p-6 rounded-xl border border-[#8b5cf6]/30 hover:border-[#8b5cf6]/70 transition-all shadow-xl backdrop-blur-sm hover:shadow-[#8b5cf6]/20 hover:shadow-2xl"
+            className="bg-[#111827] p-5 rounded-lg border-l-4 border-[#8b5cf6] transition-all"
             variants={itemVariants}
           >
-            <div className="flex items-center mb-6">
-              <div className="w-12 h-12 rounded-full bg-[#8b5cf6]/20 flex items-center justify-center mr-4 border border-[#8b5cf6]/30">
-                <Code className="text-[#8b5cf6] h-6 w-6" />
+            <div className="flex items-center mb-4">
+              <div className="w-10 h-10 rounded-md bg-[#8b5cf6]/10 flex items-center justify-center mr-3">
+                <Code className="text-[#8b5cf6] h-5 w-5" />
               </div>
-              <h3 className="text-xl font-display font-bold text-white">Development</h3>
+              <h3 className="text-lg font-display font-bold text-white">Development</h3>
             </div>
             <div className="flex flex-wrap gap-2">
               {devSkills.map((skill, index) => (
-                <motion.span 
+                <span 
                   key={index} 
-                  className="skill-bubble px-4 py-2 bg-[#8b5cf6]/10 text-[#8b5cf6] rounded-full text-sm border border-[#8b5cf6]/20"
-                  whileHover={{ y: -5, boxShadow: '0 10px 25px -5px rgba(139, 92, 246, 0.3)' }}
+                  className="px-3 py-1 bg-[#8b5cf6]/10 text-[#8b5cf6] rounded-md text-xs"
                 >
                   {skill}
-                </motion.span>
+                </span>
               ))}
             </div>
           </motion.div>
@@ -115,29 +109,22 @@ export default function SkillsSection() {
         
         {/* Interactive Skills Network Visualization */}
         <motion.div 
-          className="mt-16 relative"
+          className="mt-12 relative"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <div className="flex items-center justify-center gap-3 mb-8">
-            <NetworkIcon className="text-primary h-6 w-6" />
-            <h3 className="text-2xl font-display font-bold text-white">Skills Relationship Network</h3>
-          </div>
+          <h3 className="text-lg font-semibold text-white text-center mb-4">Skill Relationships</h3>
           
-          <div className="relative bg-[#0a101f]/70 rounded-xl overflow-hidden border border-primary/20 shadow-2xl h-[500px]">
-            <div className="absolute right-4 top-4 flex items-center gap-2 bg-dark/80 rounded-full px-3 py-1.5 border border-white/10 z-10 text-xs text-white/60">
+          <div className="relative bg-[#111827] rounded-lg overflow-hidden h-[450px]">
+            <div className="absolute right-3 top-3 flex items-center gap-1.5 bg-dark/80 rounded px-2 py-1 z-10 text-xs text-white/60">
               <MousePointerClick className="h-3 w-3" />
-              <span>Click on nodes to explore</span>
+              <span>Click nodes to explore</span>
             </div>
             
             {/* 3D Skills Network Visualization */}
             <SkillsNetwork />
-          </div>
-          
-          <div className="text-center mt-6 text-white/60 text-sm">
-            This interactive network visualizes the connections between my skills and their proficiency levels.
           </div>
         </motion.div>
       </div>
