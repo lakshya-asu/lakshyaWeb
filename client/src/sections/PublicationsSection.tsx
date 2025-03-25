@@ -25,7 +25,7 @@ export default function PublicationsSection() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <h2 className="text-3xl font-bold font-display text-white">
-            <span className="text-primary">Publications</span>
+            Publications
           </h2>
           <div className="mt-2 h-0.5 w-12 bg-primary mx-auto"></div>
         </div>

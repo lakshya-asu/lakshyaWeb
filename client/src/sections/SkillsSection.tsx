@@ -24,7 +24,7 @@ export default function SkillsSection() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold font-display text-white">
-            <span className="text-primary">Skills</span> & Expertise
+            Skills & Expertise
           </h2>
           <div className="mt-2 h-0.5 w-12 bg-primary mx-auto"></div>
         </div>
