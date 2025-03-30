@@ -21,51 +21,51 @@ export default function PublicationsSection() {
   };
 
   return (
-    <section id="publications" className="py-16 bg-[#0a0c13]">
+    <section id="publications" className="py-20 bg-gradient-to-b from-slate-800 to-slate-900">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10">
+        <div className="text-center mb-14">
           <h2 className="text-3xl font-bold font-display text-white">
             Publications
           </h2>
-          <div className="mt-2 h-0.5 w-12 bg-primary mx-auto"></div>
+          <div className="mt-3 h-1 w-16 bg-primary/80 mx-auto rounded-full"></div>
         </div>
         
         <motion.div 
-          className="grid grid-cols-1 lg:grid-cols-2 gap-5"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-8"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
           {/* Left column */}
-          <div className="space-y-5">
+          <div className="space-y-6">
             {publications.slice(0, Math.ceil(publications.length / 2)).map((pub, index) => (
               <motion.div 
                 key={index} 
-                className="bg-[#111827] p-5 rounded-lg border-l-4 border-primary"
+                className="bg-slate-800/60 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-slate-700/50 hover:border-primary/30 transition-all"
                 variants={itemVariants}
               >
-                <h3 className="text-lg font-display font-bold text-white mb-2">
+                <h3 className="text-xl font-display font-bold text-white/90 mb-2">
                   {pub.title}
                 </h3>
-                <p className="text-xs text-primary mb-2">{pub.journal}</p>
-                <p className="text-sm text-white/70 mb-3">
+                <p className="text-sm text-primary/90 mb-3 italic">{pub.journal}</p>
+                <p className="text-base text-white/70 mb-4 leading-relaxed">
                   {pub.description}
                 </p>
-                <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-5 pt-2 border-t border-slate-700/30">
                   {pub.paperLink && (
-                    <Button variant="ghost" className="h-8 px-2 py-0 text-primary hover:bg-primary/5 gap-1" asChild>
+                    <Button variant="ghost" className="h-9 px-3 py-0 text-primary/90 hover:bg-primary/10 hover:text-primary gap-2 mt-3" asChild>
                       <a href={pub.paperLink}>
-                        <FileText size={14} />
-                        Paper
+                        <FileText size={16} />
+                        Read Paper
                       </a>
                     </Button>
                   )}
                   {pub.codeLink && (
-                    <Button variant="ghost" className="h-8 px-2 py-0 text-primary hover:bg-primary/5 gap-1" asChild>
+                    <Button variant="ghost" className="h-9 px-3 py-0 text-primary/90 hover:bg-primary/10 hover:text-primary gap-2 mt-3" asChild>
                       <a href={pub.codeLink}>
-                        <Code size={14} />
-                        Code
+                        <Code size={16} />
+                        View Code
                       </a>
                     </Button>
                   )}
@@ -75,34 +75,34 @@ export default function PublicationsSection() {
           </div>
           
           {/* Right column */}
-          <div className="space-y-5">
+          <div className="space-y-6">
             {publications.slice(Math.ceil(publications.length / 2)).map((pub, index) => (
               <motion.div 
                 key={index} 
-                className="bg-[#111827] p-5 rounded-lg border-l-4 border-primary"
+                className="bg-slate-800/60 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-slate-700/50 hover:border-primary/30 transition-all"
                 variants={itemVariants}
               >
-                <h3 className="text-lg font-display font-bold text-white mb-2">
+                <h3 className="text-xl font-display font-bold text-white/90 mb-2">
                   {pub.title}
                 </h3>
-                <p className="text-xs text-primary mb-2">{pub.journal}</p>
-                <p className="text-sm text-white/70 mb-3">
+                <p className="text-sm text-primary/90 mb-3 italic">{pub.journal}</p>
+                <p className="text-base text-white/70 mb-4 leading-relaxed">
                   {pub.description}
                 </p>
-                <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-5 pt-2 border-t border-slate-700/30">
                   {pub.paperLink && (
-                    <Button variant="ghost" className="h-8 px-2 py-0 text-primary hover:bg-primary/5 gap-1" asChild>
+                    <Button variant="ghost" className="h-9 px-3 py-0 text-primary/90 hover:bg-primary/10 hover:text-primary gap-2 mt-3" asChild>
                       <a href={pub.paperLink}>
-                        <FileText size={14} />
-                        Paper
+                        <FileText size={16} />
+                        Read Paper
                       </a>
                     </Button>
                   )}
                   {pub.codeLink && (
-                    <Button variant="ghost" className="h-8 px-2 py-0 text-primary hover:bg-primary/5 gap-1" asChild>
+                    <Button variant="ghost" className="h-9 px-3 py-0 text-primary/90 hover:bg-primary/10 hover:text-primary gap-2 mt-3" asChild>
                       <a href={pub.codeLink}>
-                        <Code size={14} />
-                        Code
+                        <Code size={16} />
+                        View Code
                       </a>
                     </Button>
                   )}

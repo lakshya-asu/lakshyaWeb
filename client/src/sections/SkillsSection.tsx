@@ -20,17 +20,17 @@ export default function SkillsSection() {
   };
 
   return (
-    <section id="skills" className="py-16 bg-[#0a0c13]">
+    <section id="skills" className="py-20 bg-gradient-to-b from-slate-900 to-slate-800">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
+        <div className="text-center mb-14">
           <h2 className="text-3xl font-bold font-display text-white">
             Skills & Expertise
           </h2>
-          <div className="mt-2 h-0.5 w-12 bg-primary mx-auto"></div>
+          <div className="mt-3 h-1 w-16 bg-primary/80 mx-auto rounded-full"></div>
         </div>
         
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
@@ -38,20 +38,20 @@ export default function SkillsSection() {
         >
           {/* ML Skills */}
           <motion.div 
-            className="bg-[#111827] p-5 rounded-lg border-l-4 border-[#3b82f6] transition-all"
+            className="bg-slate-800/60 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-slate-700/50 hover:border-primary/30 transition-all"
             variants={itemVariants}
           >
-            <div className="flex items-center mb-4">
-              <div className="w-10 h-10 rounded-md bg-[#3b82f6]/10 flex items-center justify-center mr-3">
-                <Brain className="text-[#3b82f6] h-5 w-5" />
+            <div className="flex items-center mb-5">
+              <div className="w-12 h-12 rounded-full bg-primary/15 flex items-center justify-center mr-4">
+                <Brain className="text-primary h-6 w-6" />
               </div>
-              <h3 className="text-lg font-display font-bold text-white">Machine Learning</h3>
+              <h3 className="text-xl font-display font-bold text-white/90">Machine Learning</h3>
             </div>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2.5">
               {mlSkills.map((skill, index) => (
                 <span 
                   key={index} 
-                  className="px-3 py-1 bg-[#3b82f6]/10 text-[#3b82f6] rounded-md text-xs"
+                  className="px-3.5 py-1.5 bg-primary/10 text-primary/90 rounded-lg text-sm font-medium"
                 >
                   {skill}
                 </span>
@@ -61,20 +61,20 @@ export default function SkillsSection() {
           
           {/* Robotics Skills */}
           <motion.div 
-            className="bg-[#111827] p-5 rounded-lg border-l-4 border-[#10b981] transition-all"
+            className="bg-slate-800/60 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-slate-700/50 hover:border-primary/30 transition-all"
             variants={itemVariants}
           >
-            <div className="flex items-center mb-4">
-              <div className="w-10 h-10 rounded-md bg-[#10b981]/10 flex items-center justify-center mr-3">
-                <Cpu className="text-[#10b981] h-5 w-5" />
+            <div className="flex items-center mb-5">
+              <div className="w-12 h-12 rounded-full bg-primary/15 flex items-center justify-center mr-4">
+                <Cpu className="text-primary h-6 w-6" />
               </div>
-              <h3 className="text-lg font-display font-bold text-white">Robotics</h3>
+              <h3 className="text-xl font-display font-bold text-white/90">Robotics</h3>
             </div>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2.5">
               {roboticsSkills.map((skill, index) => (
                 <span 
                   key={index} 
-                  className="px-3 py-1 bg-[#10b981]/10 text-[#10b981] rounded-md text-xs"
+                  className="px-3.5 py-1.5 bg-primary/10 text-primary/90 rounded-lg text-sm font-medium"
                 >
                   {skill}
                 </span>
@@ -84,20 +84,20 @@ export default function SkillsSection() {
           
           {/* Development Skills */}
           <motion.div 
-            className="bg-[#111827] p-5 rounded-lg border-l-4 border-[#8b5cf6] transition-all"
+            className="bg-slate-800/60 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-slate-700/50 hover:border-primary/30 transition-all"
             variants={itemVariants}
           >
-            <div className="flex items-center mb-4">
-              <div className="w-10 h-10 rounded-md bg-[#8b5cf6]/10 flex items-center justify-center mr-3">
-                <Code className="text-[#8b5cf6] h-5 w-5" />
+            <div className="flex items-center mb-5">
+              <div className="w-12 h-12 rounded-full bg-primary/15 flex items-center justify-center mr-4">
+                <Code className="text-primary h-6 w-6" />
               </div>
-              <h3 className="text-lg font-display font-bold text-white">Development</h3>
+              <h3 className="text-xl font-display font-bold text-white/90">Development</h3>
             </div>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2.5">
               {devSkills.map((skill, index) => (
                 <span 
                   key={index} 
-                  className="px-3 py-1 bg-[#8b5cf6]/10 text-[#8b5cf6] rounded-md text-xs"
+                  className="px-3.5 py-1.5 bg-primary/10 text-primary/90 rounded-lg text-sm font-medium"
                 >
                   {skill}
                 </span>

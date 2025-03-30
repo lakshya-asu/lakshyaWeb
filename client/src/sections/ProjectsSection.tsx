@@ -40,17 +40,17 @@ export default function ProjectsSection() {
   };
 
   return (
-    <section id="projects" className="py-16 bg-[#0a0c13]">
+    <section id="projects" className="py-20 bg-gradient-to-b from-slate-900 to-slate-800">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10">
+        <div className="text-center mb-14">
           <h2 className="text-3xl font-bold font-display text-white">
             Featured Projects
           </h2>
-          <div className="mt-2 h-0.5 w-12 bg-primary mx-auto"></div>
+          <div className="mt-3 h-1 w-16 bg-primary/80 mx-auto rounded-full"></div>
         </div>
         
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -59,45 +59,45 @@ export default function ProjectsSection() {
           {projects.map((project, index) => (
             <motion.div 
               key={index}
-              className={`bg-[#111827] rounded-md overflow-hidden border-l-4 ${typeColors[project.type as keyof typeof typeColors].accent}`}
+              className="bg-slate-800/60 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg border border-slate-700/50 hover:border-primary/30 transition-all"
               variants={itemVariants}
             >
-              <div className="p-5">
-                <div className="flex items-center justify-between mb-3">
-                  <h4 className="font-display font-bold text-lg text-white">{project.title}</h4>
-                  <span className={`text-xs px-2 py-1 rounded-sm ${typeColors[project.type as keyof typeof typeColors].badge}`}>
+              <div className="p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <h4 className="font-display font-bold text-xl text-white/90">{project.title}</h4>
+                  <span className="px-2.5 py-1 rounded-full bg-primary/15 text-primary/90 text-xs font-medium">
                     {project.typeLabel}
                   </span>
                 </div>
                 
-                <p className="text-sm text-white/70 mb-3">{project.description}</p>
+                <p className="text-base text-white/70 mb-4 leading-relaxed">{project.description}</p>
                 
-                <div className="flex flex-wrap gap-1.5 mb-4">
+                <div className="flex flex-wrap gap-2 mb-5">
                   {project.technologies.map((tech, techIndex) => (
                     <span 
                       key={techIndex} 
-                      className="text-xs px-2 py-0.5 bg-white/5 text-white/60 rounded"
+                      className="text-xs px-2.5 py-1 bg-slate-700/60 text-white/70 rounded-lg"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
                 
-                <div className="flex items-center gap-4 text-xs">
+                <div className="flex items-center gap-6 text-sm pt-2 border-t border-slate-700/30">
                   <a 
                     href={project.link} 
-                    className={`${typeColors[project.type as keyof typeof typeColors].text} flex items-center`}
+                    className="text-primary/90 hover:text-primary flex items-center transition-colors mt-3"
                   >
-                    <ExternalLink className="h-3 w-3 mr-1" />
-                    Demo
+                    <ExternalLink className="h-4 w-4 mr-1.5" />
+                    View Demo
                   </a>
                   
                   <a 
                     href={"#"} 
-                    className="text-white/60 flex items-center"
+                    className="text-white/70 hover:text-white/90 flex items-center transition-colors mt-3"
                   >
-                    <Github className="h-3 w-3 mr-1" />
-                    Code
+                    <Github className="h-4 w-4 mr-1.5" />
+                    Source Code
                   </a>
                 </div>
               </div>
@@ -106,17 +106,17 @@ export default function ProjectsSection() {
         </motion.div>
         
         <motion.div 
-          className="mt-8 text-center"
+          className="mt-12 text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
           <Button 
-            variant="ghost" 
-            className="text-primary hover:bg-primary/5 text-sm"
+            variant="outline" 
+            className="bg-primary/10 text-primary hover:bg-primary/20 border-primary/30 text-sm px-6 py-5"
           >
-            View All Projects <ArrowRight className="ml-1 h-3 w-3" />
+            View All Projects <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
         </motion.div>
       </div>
