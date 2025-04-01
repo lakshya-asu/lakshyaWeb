@@ -98,7 +98,19 @@ export default function AboutSection() {
                   <li className="flex items-start">
                     <i className="bx bx-trophy text-primary mt-1"></i>
                     <div>
+                      <p className="text-sm">#1 Design Report Worldwide SAE Aero Design East Regular 2020</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <i className="bx bx-trophy text-primary mt-1"></i>
+                    <div>
                       <p className="text-sm">TSMC AZ Fellowship</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <i className="bx bx-trophy text-primary mt-1"></i>
+                    <div>
+                      <p className="text-sm">Ira Fulton Fellowship</p>
                     </div>
                   </li>
                 </ul>

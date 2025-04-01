@@ -19,8 +19,9 @@ Robotics & Avionics, KJSCE Mumbai, 2018-2022
 
 AWARDS 
 Ranked #6 Worldwide SAE Aero Design East - Advanced 2022 Fort Worth, TX, USA 
-Ranked #13 Worldwide SAE Aero Design East - Regular 2020 Lakeland, FL, USA 
+#1 Design Report Worldwide SAE Aero Design East Regular 2020 Lakeland, FL, USA 
 TSMC AZ Fellowship
+Ira Fulton Fellowship
  
 SKILLS 
 ML: Causal Reasoning, Deep Reinforcement Learning, Graph Neural Networks, Transformers
