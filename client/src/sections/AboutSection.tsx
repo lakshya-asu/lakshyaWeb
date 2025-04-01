@@ -141,8 +141,12 @@ export default function AboutSection() {
             transition={{ duration: 0.6 }}
           >
             <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary p-2">
-              <div className="absolute inset-0 rounded-full overflow-hidden bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                <div className="text-8xl text-white font-display">LJ</div>
+              <div className="absolute inset-0 rounded-full overflow-hidden">
+                <img 
+                  src="/images/profile.jpg" 
+                  alt="Lakshya Jain" 
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div className="absolute -bottom-2 -right-2 bg-secondary text-white p-2 rounded-full w-12 h-12 flex items-center justify-center">
                 <i className="bx bx-robot text-2xl"></i>
